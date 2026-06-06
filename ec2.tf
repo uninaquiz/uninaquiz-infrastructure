@@ -143,6 +143,9 @@ resource "aws_instance" "app" {
 
     # Application port (must match the security group ingress rule)
     APP_PORT=8080
+
+    # Gin framework execution mode
+    GIN_MODE=release
     ENVFILE
 
     # Remove leading whitespace from the .env file
@@ -166,8 +169,27 @@ resource "aws_instance" "app" {
     WorkingDirectory=/opt/uninaquiz
     ExecStart=/opt/uninaquiz/uninaquiz-backend
     EnvironmentFile=/opt/uninaquiz/.env
+
+    # Lifecycle and restart behavior
     Restart=always
-    RestartSec=5
+    RestartSec=5s
+    TimeoutStopSec=35s
+
+    # System resource limits
+    LimitNOFILE=65535
+
+    # Sandboxing and Security Hardening
+    ProtectSystem=full
+    ProtectHome=true
+    PrivateTmp=true
+    NoNewPrivileges=true
+    ProtectControlGroups=true
+    ProtectKernelModules=true
+    ProtectKernelTunables=true
+    RestrictRealtime=true
+    MemoryDenyWriteExecute=true
+
+    # Logging and Output
     StandardOutput=journal
     StandardError=journal
     SyslogIdentifier=uninaquiz

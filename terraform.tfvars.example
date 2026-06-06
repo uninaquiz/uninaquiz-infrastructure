@@ -1,0 +1,28 @@
+# =============================================================================
+# UninaQuiz Infrastructure - Example Variables File
+# =============================================================================
+# Copy this file to terraform.tfvars and adjust the values as needed.
+# All values shown below are the defaults. Uncomment and modify only
+# the variables you want to override.
+# =============================================================================
+
+# AWS region where all resources will be provisioned
+# aws_region = "us-east-2"
+
+# Project name used for resource naming and tagging
+# project_name = "uninaquiz"
+
+# EC2 instance type for the application server
+# instance_type = "t2.micro"
+
+# CIDR block for the VPC
+# vpc_cidr = "10.0.0.0/16"
+
+# CIDR block for the public subnet
+# public_subnet_cidr = "10.0.1.0/24"
+
+# Port on which the Go backend application listens
+# app_port = 8080
+
+# Deployment environment
+# environment = "production"
